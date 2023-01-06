@@ -3,12 +3,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { ref, set } from "firebase/database";
 import { db, auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignupForm = () => {
+    const navigate=useNavigate()
   const userId = Date.now();
 
   const validationSchema = yup.object({
@@ -49,6 +50,7 @@ const SignupForm = () => {
             
             set(ref(db, "users/" + userId), data);
           alert("Signed up Successfully")
+          setTimeout(()=> navigate('/Login'), 500)
         })
         .catch((error) => {
           const errorCode = error.code;

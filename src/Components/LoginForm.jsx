@@ -3,13 +3,15 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ref, set } from "firebase/database";
 import { db, auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginForm = () => {
- const {activeUser, setActiveUser}=useState(null)
+
+    const navigate=useNavigate()
+//  const {activeUser, setActiveUser}=useState(null)
 
 
   const validationSchema = yup.object({
@@ -36,8 +38,9 @@ const LoginForm = () => {
       signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          setActiveUser(user)
+        //   setActiveUser(user)
           alert("Logged in Successfully")
+          setTimeout(()=> navigate('/Dashboard'), 500)
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -86,16 +89,19 @@ const LoginForm = () => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-
+{/* <Link to="Dashboard"> */}
           <Button
             sx={{ marginTop: "25px" }}
             color="secondary"
             variant="outlined"
             fullWidth
             type="submit"
+
+            
           >
             Login
           </Button>
+          {/* </Link> */}
         </form>
       </div>
     </div>

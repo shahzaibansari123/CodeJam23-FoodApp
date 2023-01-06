@@ -13,9 +13,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Signup />} />
-        <Route exact path="/Login" element={<Login />} />
-        <Route exact path="/Favorites" element={<Favorites />} />
-        <Route exact path="/Dashboard" element={<Dashboard />} />
+        <Route  path="/Login" element={<Login />} />
+        <Route  path="/Favorites" element={<Favorites />} />
+        <Route  path="/Dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
